@@ -6,11 +6,10 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:30:41 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/27 17:26:32 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:02:38 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdlib.h"
 #include "libft.h"
 
 int	ft_itoa1(long long n, char *p, int flag)

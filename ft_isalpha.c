@@ -6,11 +6,10 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:15:02 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/27 17:28:46 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:02:28 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unistd.h"
 #include "libft.h"
 
 int	ft_isalpha(int c)

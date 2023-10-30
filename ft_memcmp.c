@@ -6,32 +6,46 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:44:06 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/27 17:26:45 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/10/30 17:02:30 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 int	ft_memcmp(const void *buf1, const void *buf2, size_t n)
 {
-	size_t		i;
-	const char	*p;
-	const char	*s;
+	size_t			i;
+	unsigned char	*p;
+	unsigned char	*s;
+	int				result;
 
+	if (buf1 == NULL && buf2 == NULL)
+		return (0);
 	i = 0;
-	p = (const char *)buf1;
-	s = (const char *)buf2;
+	result = 0;
+	p = (unsigned char *)buf1;
+	s = (unsigned char *)buf2;
 	while (i < n)
 	{
-		if (*s != *p)
+		if (s[i] != p[i])
 		{
-			return (int)(*p - *s);
+			result = (int)(*(p + i) - *(s + i));
 		}
-		s++;
-		p++;
 		i++;
 	}
-	return (0);
+	return (result);
 }
 
+// #include <stdio.h>
+// #include <string.h>
+
+// int	main(void)
+// {
+
+// 	char* buf4 = NULL;
+// 	char* buf5 = NULL;
+
+// 	//printf("ft_memcmp: %d\n", ft_memcmp(buf4, buf5, 1));
+// 	printf("memcmp: %d\n", memcmp(buf4, buf5, 1));
+// 	return (0);
+// }

@@ -6,9 +6,11 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 20:12:10 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/27 17:59:36 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:01:26 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int     whitespaces(char *str, int *ptr_i)
 {

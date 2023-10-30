@@ -6,20 +6,20 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:26:57 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/27 17:27:13 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:55:56 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 void	*ft_memset(void *str, int c, size_t n)
 {
-	int	count;
+	size_t			count;
+	unsigned char	*p;
 
-	unsigned char *p = str; /*型変換*/
+	p = (unsigned char *)str;
 	count = 0;
-	while (*p != '\0' && (size_t)count < n)
+	while (count < n)
 	{
 		*p++ = c;
 		count++;

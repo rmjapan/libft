@@ -6,84 +6,51 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 20:12:10 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/30 14:01:26 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:29:13 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int     whitespaces(char *str, int *ptr_i)
+static int	check_overflow(unsigned long nbr, int new_digit, int sign)
 {
-        int     count;
-        int     i;
-
-        i = 0;
-        count = 1;
-        while ((*str >= 9 && str[i] <= 13) || str[i] == 32)
-                i++;
-        while (str[i] && (str[i] == 43 || str[i] == 45))
-        {
-                if (str[i] == 45)
-                        count *= -1;
-                i++;
-        }
-        *ptr_i = i;
-        return (count);
+	if (sign == 1)
+		if ((nbr >= 922337203685477580 && new_digit > 7)
+			|| (nbr >= 922337203685477581))
+			return (-1);
+	if (sign == -1)
+		if ((nbr >= 922337203685477580
+				&& new_digit > 8) | (nbr >= 922337203685477581))
+			return (0);
+	return (1);
 }
 
-int     ft_atoi(char *str)
+static int	ft_space(int c)
 {
-        int     sign;
-        int     result;
-        int     i;
-
-        result = 0;
-        sign = whitespaces(str, &i);
-        while (str[i] && str[i] >= 48 && str[i] <= 57)
-        {
-                result *= 10;
-                result += str[i] - 48;
-                i++;
-        }
-        result *= sign;
-        return (result);
+	return ((c == '\n') || (c == '\t') || (c == '\v') || (c == ' ')
+		|| (c == '\f') || (c == '\r'));
 }
 
-// #include <stdio.h>
+int	ft_atoi(const char *str)
+{
+	unsigned long	nbr;
+	int				sign;
+	int				overflow;
 
-// int ft_atoi(char *str);
-
-// int main(void) {
-//   char str1[] = "42";
-//   char str2[] = "   -42";
-//   char str3[] = "4193 with words";
-//   char str4[] = "-+-a-987";
-//   char str5[] = "-91283472332";
-
-//   // Test Case 1: Normal Input
-//   printf("Test Case 1: Normal Input\n");
-//   printf("String: %s\n", str1);
-//   printf("Result: %d\n", ft_atoi(str1)); // expected output: 42
-
-//   // Test Case 2: Leading Whitespace and Negative Sign
-//   printf("Test Case 2: Leading Whitespace and Negative Sign\n");
-//   printf("String: %s\n", str2);
-//   printf("Result: %d\n", ft_atoi(str2)); // expected output: -42
-
-//   // Test Case 3: Numeric Characters Followed by Non-Numeric Characters
-//   printf("Test Case 3: Numeric Characters Followed by Non-Numeric Chara\n");
-//   printf("String: %s\n", str3);
-//   printf("Result: %d\n", ft_atoi(str3)); // expected output: 4193
-
-//   // Test Case 4: Non-Numeric Characters Followed by Numeric Characters
-//   printf("Test Case 4: Non-Numeric Characters Followed by Numeric Chara\n");
-//   printf("String: %s\n", str4);
-//   printf("Result: %d\n", ft_atoi(str4)); // expected output: 0
-
-//   // Test Case 5: Integer Overflow
-//   printf("Test Case 5: Integer Overflow\n");
-//   printf("String: %s\n", str5);
-//   printf("Result: %d\n", ft_atoi(str5)); // expected output: -2147483648
-
-//   return (0);
-// }
+	nbr = 0;
+	sign = 1;
+	while (ft_space(*str))
+		str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '+' || *str == '-')
+		str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		overflow = check_overflow(nbr, (*str - '0'), sign);
+		if (overflow != 1)
+			return (overflow);
+		nbr = (nbr * 10) + (*str++ - '0');
+	}
+	return (nbr * sign);
+}

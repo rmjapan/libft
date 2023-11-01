@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:44:06 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/30 17:02:30 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/01 10:50:57 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	ft_memcmp(const void *buf1, const void *buf2, size_t n)
 		if (s[i] != p[i])
 		{
 			result = (int)(*(p + i) - *(s + i));
+			break ;
 		}
 		i++;
 	}

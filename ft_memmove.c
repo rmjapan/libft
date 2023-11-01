@@ -6,11 +6,10 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:31:05 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/27 17:26:55 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:04:44 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unistd.h"
 #include "libft.h"
 
 void	*ft_memmove(void *buf1, const void *buf2, size_t n)

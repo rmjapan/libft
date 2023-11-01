@@ -6,35 +6,36 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:35:42 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/09/20 14:17:02 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:08:32 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	i;
-	int		size;
-	size_t	j;
+	size_t	dst_size;
+	size_t	src_size;
 	size_t	max;
+	size_t	j;
 
-	i = ft_strlen(dst);
-	if (dstsize == (size_t)0 || i >= dstsize)
+	dst_size = ft_strlen(dst);
+	src_size = ft_strlen(src);
+	if (dstsize == 0)
 	{
-		return (ft_strlen((char *)src));
+		return (src_size);
 	}
-	size = i + ft_strlen((char *)src);
-	max = dstsize - i - 1;
+	if (dstsize <= dst_size)
+	{
+		return (src_size + dstsize);
+	}
+	max = dstsize - dst_size - 1;
 	j = 0;
 	while (src[j] != '\0' && j < max)
 	{
-		dst[i] = src[j];
-		i++;
+		dst[dst_size + j] = src[j];
 		j++;
 	}
-	dst[i] = '\0';
-	return (size);
+	dst[dst_size + j] = '\0';
+	return (dst_size + src_size);
 }
-

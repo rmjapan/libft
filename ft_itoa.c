@@ -6,13 +6,13 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:30:41 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/30 14:02:38 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:04:20 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_itoa1(long long n, char *p, int flag)
+static int	ft_itoa1(long long n, char *p, int flag)
 {
 	int	k;
 
@@ -35,7 +35,7 @@ int	ft_itoa1(long long n, char *p, int flag)
 	}
 }
 
-int	ketasize(long long n)
+static int	ketasize(long long n)
 {
 	int	keta_size;
 
@@ -54,33 +54,18 @@ char	*ft_itoa(int n)
 	long long	n1;
 	char		*p;
 	int			i;
-	long long	n2;
 	int			flag;
 
 	flag = 0;
 	n1 = (long long)n;
-	if (n1 < (long long)0)
+	if (n1 < 0)
 	{
 		n1 = -1 * n1;
 		flag = 1;
 	}
-	n2 = n1;
 	keta_size = ketasize(n1);
 	p = (char *)malloc(sizeof(char) * keta_size);
-	i = ft_itoa1(n2, p, flag);
+	i = ft_itoa1(n1, p, flag);
 	p[i] = '\0';
 	return (p);
 }
-
-// #include "stdio.h"
-// int	main(void)
-// {
-// 	printf("%s\n", ft_itoa(-2147483648));
-// 	printf("%s\n", ft_itoa(0));
-// 	printf("%s\n", ft_itoa(1));
-// 	printf("%s\n", ft_itoa(-1));
-// 	printf("%s\n", ft_itoa(10));
-// 	printf("%s\n", ft_itoa(-10));
-
-// 	return (0);
-// }

@@ -6,17 +6,16 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 23:29:11 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/27 17:30:40 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:11:17 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char *p;
-	int i;
+	char	*p;
+	int		i;
 
 	i = 0;
 	while (s[i] != '\0')

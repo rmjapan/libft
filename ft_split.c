@@ -6,101 +6,86 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 20:24:11 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/27 17:29:47 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:10:47 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdlib.h"
 #include "libft.h"
 
-char	*check(int i, int j, char const *s)
+static char	*check(char *t, char const *a, char const *b)
 {
-	char	*t;
-	int		p;
+	char	*p;
+	size_t	len;
 
-	t = (char *)malloc(sizeof(char) * (i - j + 1));
-	p = 0;
-	for (int k = j; k < i; k++)
+	len = 0;
+	p = t;
+	while (a != b)
 	{
-		t[p] = s[k];
-		p++;
+		p[len++] = *a;
+		a++;
 	}
-	return (t);
+	p[len] = '\0';
+	return (p);
+}
+
+static size_t	ft_split_len(const char *s, char c)
+{
+	size_t	count;
+
+	if (!*s)
+		return (0);
+	count = 0;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (*s)
+			count++;
+		while (*s != c && *s)
+			s++;
+	}
+	return (count);
+}
+
+static size_t	ft_split_strlen(char const *s, char c)
+{
+	size_t	len;
+
+	len = 0;
+	while (*s)
+	{
+		if (*s == c)
+			break ;
+		s++;
+		len++;
+	}
+	return (len);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	**t;
+	size_t	result_len;
+	char	**result;
+	size_t	i;
+	size_t	len;
 
+	result_len = ft_split_len(s, c);
+	result = (char **)malloc(sizeof(char *) * result_len + 1);
+	if (result == NULL || s == NULL)
+		return (NULL);
 	i = 0;
-	j = 0;
-	k = 0;
-	t = malloc(sizeof(char **) * 100);
-	while (s[i] != '\0')
+	while (*s != '\0' && i < result_len)
 	{
-		if (s[i] == c)
-		{
-			t[k] = check(i, j, s);
-			j = i + 1;
-			k++;
-		}
+		while (*s == c)
+			s++;
+		len = ft_split_strlen(s, c);
+		result[i] = (char *)malloc(sizeof(char) * len + 1);
+		if (result[i] == NULL)
+			return (free(result), NULL);
+		result[i] = check(result[i], s, s + len);
+		s = s + len;
 		i++;
 	}
-	t[k] = check(i, j, s);
-	t[k + 1] = NULL;
-	return (t);
+	result[i] = NULL;
+	return (result);
 }
-
-// #include <stdio.h>
-// #include <string.h>
-
-// // ft_split関数のプロトタイプ
-// char		**ft_split(char const *s, char c);
-
-// int	main(void)
-// {
-// 		char *s;
-// 		char c;
-// 	int		num_tests;
-// 	char	**result;
-// 	int		j;
-
-// 	// テストケースの定義
-// 	struct	TestCase
-// 	{
-// 		char *expected[10]; // 10個までの出力を想定
-// 	} tests[] = {{"Hello-World-This-is-OpenAI", '-', {"Hello", "World", "This",
-// 		"is", "OpenAI"}}, {"", '-', {""}}, {"-Hello-World-", '-', {"", "Hello",
-// 		"World", ""}}, {"Hello---World", '-', {"Hello", "", "", "World"}},
-// 		{"HelloWorld", '-', {"HelloWorld"}}, {"apple,orange,banana", ',',
-// 		{"apple", "orange", "banana"}}, {"-----", '-', {"", "", "", "", "",
-// 		""}}};
-// 	// 各テストケースを実行
-// 	num_tests = sizeof(tests) / sizeof(tests[0]);
-// 	for (int i = 0; i < num_tests; i++)
-// 	{
-// 		result = ft_split(tests[i].s, tests[i].c);
-// 		printf("Test %d\nInput: \"%s\", Delimiter: '%c'\nExpected: [", i + 1,
-// 			tests[i].s, tests[i].c);
-// 		j = 0;
-// 		while (tests[i].expected[j] && j < 9)
-// 		{ // 最大10個までの出力を表示
-// 			printf("\"%s\", ", tests[i].expected[j]);
-// 			j++;
-// 		}
-// 		printf("]\nResult: [");
-// 		j = 0;
-// 		while (result[j] && j < 9)
-// 		{ // 最大10個までの出力を表示
-// 			printf("\"%s\", ", result[j]);
-// 			free(result[j]); // 各文字列のメモリを解放
-// 			j++;
-// 		}
-// 		printf("]\n\n");
-// 		free(result); // 文字列配列のメモリを解放
-// 	}
-// 	return (0);
-// }

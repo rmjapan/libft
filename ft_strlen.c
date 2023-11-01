@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:24:39 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/27 17:32:40 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/01 12:59:01 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t i = 0;
+	size_t	i;
+
+	i = 0;
+	if (str == NULL)
+		return (0);
 	while (*str != '\0')
 	{
 		i++;
@@ -22,4 +26,3 @@ size_t	ft_strlen(const char *str)
 	}
 	return (i);
 }
-

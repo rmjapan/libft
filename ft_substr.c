@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:36:56 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/11/01 13:09:40 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/13 21:37:32 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	count;
 	size_t	s_len;
 
+	if (s == NULL)
+		return (NULL);
 	s_len = ft_strlen(s);
 	if (len == 0 || start >= s_len || s == NULL)
 	{

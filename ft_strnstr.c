@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 15:45:01 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/11/01 12:50:05 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/13 21:33:44 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 	size_t	len;
 	size_t	i;
 
-	if (s1 == NULL || s2 == NULL)
+	if (s1 == NULL && n == 0)
 		return (NULL);
 	if (*s2 == '\0')
 		return ((char *)s1);

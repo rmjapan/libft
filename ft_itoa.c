@@ -6,15 +6,15 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 19:30:41 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/11/01 13:04:20 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:47:48 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_itoa1(long long n, char *p, int flag)
+static size_t	ft_itoa1(long long n, char *p, int flag)
 {
-	int	k;
+	size_t	k;
 
 	if (n < 10)
 	{
@@ -23,8 +23,8 @@ static int	ft_itoa1(long long n, char *p, int flag)
 		{
 			p[k++] = '-';
 		}
-		p[k] = n + '0';
-		return (k + 1);
+		p[k++] = n + '0';
+		return (k);
 	}
 	else
 	{
@@ -35,11 +35,13 @@ static int	ft_itoa1(long long n, char *p, int flag)
 	}
 }
 
-static int	ketasize(long long n)
+static size_t	ketasize(long long n)
 {
 	int	keta_size;
 
 	keta_size = 0;
+	if (n == 0)
+		return (1);
 	while (n > 0)
 	{
 		n = n / 10;
@@ -50,21 +52,23 @@ static int	ketasize(long long n)
 
 char	*ft_itoa(int n)
 {
-	int			keta_size;
+	size_t		keta_size;
 	long long	n1;
 	char		*p;
-	int			i;
-	int			flag;
+	size_t		i;
+	size_t		flag;
 
 	flag = 0;
 	n1 = (long long)n;
 	if (n1 < 0)
 	{
-		n1 = -1 * n1;
+		n1 = -n1;
 		flag = 1;
 	}
 	keta_size = ketasize(n1);
-	p = (char *)malloc(sizeof(char) * keta_size);
+	p = (char *)malloc(sizeof(char) * (keta_size + flag + 1));
+	if (p == NULL)
+		return (NULL);
 	i = ft_itoa1(n1, p, flag);
 	p[i] = '\0';
 	return (p);

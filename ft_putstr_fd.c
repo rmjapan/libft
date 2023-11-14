@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 19:16:17 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/11/01 13:06:26 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:53:36 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 
+	if (s == NULL)
+		return ;
 	i = 0;
 	while (s[i])
 	{

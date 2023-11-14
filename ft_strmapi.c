@@ -6,7 +6,7 @@
 /*   By: rmiyauch <rmiyauch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 23:29:11 by rmiyauch          #+#    #+#             */
-/*   Updated: 2023/10/31 17:11:17 by rmiyauch         ###   ########.fr       */
+/*   Updated: 2023/11/14 11:50:51 by rmiyauch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	int		i;
 
 	i = 0;
+	if (s == NULL || f == NULL)
+		return (NULL);
 	while (s[i] != '\0')
 	{
 		i++;
